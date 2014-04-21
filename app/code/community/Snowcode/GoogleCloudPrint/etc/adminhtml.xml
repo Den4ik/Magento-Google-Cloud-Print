@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <scgooglecloudprint translate="title" module="scgooglecloudprint">
+                                        <label><![CDATA[Snowcode]]></label>
+                                        <sort_order>550</sort_order>
+                                    </scgooglecloudprint>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

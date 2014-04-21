@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <snowcode translate="label" module="scgooglecloudprint">
+            <label><![CDATA[Snowcode]]></label>
+            <sort_order>550</sort_order>
+        </snowcode>
+    </tabs>
+    <sections>
+        <scgooglecloudprint translate="label comment">
+            <label><![CDATA[Google Cloud Print]]></label>
+            <tab>snowcode</tab>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <extension_information>
+                    <label><![CDATA[Extension information]]></label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <version>
+                            <label><![CDATA[Version]]></label>
+                            <frontend_model>scgooglecloudprint/adminhtml_system_configuration_version</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </version>
+                    </fields>
+                </extension_information>
+                <general>
+                    <label><![CDATA[General Configuration]]></label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enabled>
+                            <label><![CDATA[Enable]]></label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enabled>
+                        <account_login>
+                            <label><![CDATA[Google Account Login]]></label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_class>validate-email</frontend_class>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </account_login>
+                        <account_password>
+                            <label><![CDATA[Google Account Password]]></label>
+                            <frontend_type>password</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </account_password>
+                        <printer_id>
+                            <label><![CDATA[Google Cloud Printer ID]]></label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </printer_id>
+                    </fields>
+                </general>
+            </groups>
+        </scgooglecloudprint>
+    </sections>
+</config>
