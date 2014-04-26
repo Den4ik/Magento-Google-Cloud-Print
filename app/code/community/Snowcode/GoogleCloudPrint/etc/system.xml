@@ -41,15 +41,6 @@
                     <show_in_website>0</show_in_website>
                     <show_in_store>0</show_in_store>
                     <fields>
-                        <enabled>
-                            <label><![CDATA[Enable]]></label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
-                        </enabled>
                         <account_login>
                             <label><![CDATA[Google Account Login]]></label>
                             <frontend_type>text</frontend_type>
@@ -69,7 +60,9 @@
                         </account_password>
                         <printer_id>
                             <label><![CDATA[Google Cloud Printer ID]]></label>
-                            <frontend_type>text</frontend_type>
+                            <comment><![CDATA[To see printers please enter and save login and password]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>scgooglecloudprint/system_config_source_printers</source_model>
                             <sort_order>40</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
@@ -77,6 +70,43 @@
                         </printer_id>
                     </fields>
                 </general>
+                <print_replace>
+                    <label><![CDATA[Print Configuration]]></label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <print_invoice>
+                            <label><![CDATA[Print Invoice With GCP]]></label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </print_invoice>
+                        <print_creditmemo>
+                            <label><![CDATA[Print Creditmemo With GCP]]></label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </print_creditmemo>
+                        <print_shipment>
+                            <label><![CDATA[Print Shipment With GCP]]></label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </print_shipment>
+                    </fields>
+                </print_replace>
             </groups>
         </scgooglecloudprint>
     </sections>

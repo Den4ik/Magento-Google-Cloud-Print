@@ -29,11 +29,11 @@
     <admin>
         <routers>
             <adminhtml>
-                    <args>
-                        <modules>
-                            <payperrentals before="Mage_Adminhtml_Sales">Snowcode_GoogleCloudPrint_Adminhtml</payperrentals>
-                        </modules>
-                    </args>
+                <args>
+                    <modules>
+                        <payperrentals before="Mage_Adminhtml_Sales">Snowcode_GoogleCloudPrint_Adminhtml</payperrentals>
+                    </modules>
+                </args>
             </adminhtml>
         </routers>
     </admin>
@@ -59,4 +59,13 @@
             </modules>
         </translate>
     </frontend>
+    <default>
+        <scgooglecloudprint>
+            <print_replace>
+                <print_invoice>0</print_invoice>
+                <print_creditmemo>0</print_creditmemo>
+                <print_shipment>0</print_shipment>
+            </print_replace>
+        </scgooglecloudprint>
+    </default>
 </config>

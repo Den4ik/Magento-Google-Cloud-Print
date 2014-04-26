@@ -23,11 +23,6 @@ class Snowcode_GoogleCloudPrint_Helper_Config extends Mage_Core_Helper_Abstract
     /**
      *
      */
-    const XML_GENERAL_ENABLED = 'scgooglecloudprint/general/enabled';
-
-    /**
-     *
-     */
     const XML_API_LOGIN = 'scgooglecloudprint/general/account_login';
 
     /**
@@ -41,17 +36,62 @@ class Snowcode_GoogleCloudPrint_Helper_Config extends Mage_Core_Helper_Abstract
     const XML_API_PRINTER_ID = 'scgooglecloudprint/general/printer_id';
 
     /**
-     * Is extension enabled
+     *
+     */
+    const XML_PRINT_INVOICE = 'scgooglecloudprint/print_replace/print_invoice';
+
+    /**
+     *
+     */
+    const XML_PRINT_CREDITMEMO = 'scgooglecloudprint/print_replace/print_creditmemo';
+
+    /**
+     *
+     */
+    const XML_PRINT_SHIPMENT = 'scgooglecloudprint/print_replace/print_shipment';
+
+    /**
+     * Is print invoice
      *
      * @param null $storeId Store id
      * @return bool
      */
-    public function isEnabled($storeId = null)
+    public function isInvoice($storeId = null)
     {
         if (!is_null($storeId)) {
-            return (bool)Mage::getStoreConfig(self::XML_GENERAL_ENABLED, $storeId);
+            return (bool)Mage::getStoreConfig(self::XML_PRINT_INVOICE, $storeId);
         } else {
-            return (bool)Mage::getStoreConfig(self::XML_GENERAL_ENABLED);
+            return (bool)Mage::getStoreConfig(self::XML_PRINT_INVOICE);
+        }
+    }
+
+    /**
+     * Is print creditmemo
+     *
+     * @param null $storeId Store id
+     * @return bool
+     */
+    public function isCreditmemo($storeId = null)
+    {
+        if (!is_null($storeId)) {
+            return (bool)Mage::getStoreConfig(self::XML_PRINT_CREDITMEMO, $storeId);
+        } else {
+            return (bool)Mage::getStoreConfig(self::XML_PRINT_CREDITMEMO);
+        }
+    }
+
+    /**
+     * Is print shipment
+     *
+     * @param null $storeId Store id
+     * @return bool
+     */
+    public function isShipment($storeId = null)
+    {
+        if (!is_null($storeId)) {
+            return (bool)Mage::getStoreConfig(self::XML_PRINT_SHIPMENT, $storeId);
+        } else {
+            return (bool)Mage::getStoreConfig(self::XML_PRINT_SHIPMENT);
         }
     }
 

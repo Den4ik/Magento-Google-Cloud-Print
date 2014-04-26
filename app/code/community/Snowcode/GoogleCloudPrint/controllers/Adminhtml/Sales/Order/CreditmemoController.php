@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Google Cloud Print
  *
@@ -18,39 +17,39 @@
  * @copyright  Copyright (c) 2014 Snowcode (http://snowcode.info/)
  * @license    http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  */
-require_once(Mage::getBaseDir('code') . DS . 'core' . DS . 'Mage' . DS . 'Adminhtml' . DS . 'controllers' . DS . 'Sales' . DS . 'Order' . DS . 'InvoiceController.php');
+require_once(Mage::getBaseDir('code') . DS . 'core' . DS . 'Mage' . DS . 'Adminhtml' . DS . 'controllers' . DS . 'Sales' . DS . 'Order' . DS . 'CreditmemoController.php');
 
-class Snowcode_GoogleCloudPrint_Adminhtml_Sales_Order_InvoiceController extends Mage_Adminhtml_Sales_Order_InvoiceController
+class Snowcode_GoogleCloudPrint_Adminhtml_Sales_Order_CreditmemoController extends Mage_Adminhtml_Sales_Order_CreditmemoController
 {
     /**
-     * Print invoice action
+     * Print creditmemo action
      *
      * @return void
      */
     public function printAction()
     {
-        if ($invoiceId = $this->getRequest()->getParam('invoice_id')) {
-            if ($invoice = Mage::getModel('sales/order_invoice')->load($invoiceId)) {
+        if ($creditmemoId = $this->getRequest()->getParam('creditmemo_id')) {
+            if ($creditmemo = Mage::getModel('sales/order_creditmemo')->load($creditmemoId)) {
                 $configHelper = Mage::helper('scgooglecloudprint/config');
                 $storeId = $this->getRequest()->getParam('store') ?
                     $this->getRequest()->getParam('store') : Mage::app()->getStore()->getId();
-                if ($configHelper->isInvoice($storeId)) {
+                if ($configHelper->isCreditmemo($storeId)) {
                     /** We should use custom pdf model with times font. Different fonts not allowed in google */
-                    $pdf = Mage::getModel('scgooglecloudprint/sales_order_pdf_invoice')->getPdf(array($invoice));
-                    $name = 'invoice' . Mage::getSingleton('core/date')->date('Y-m-d_H-i-s')
-                        . '_' . $invoice->getIncrementId() . '.pdf';
+                    $pdf = Mage::getModel('scgooglecloudprint/sales_order_pdf_creditmemo')->getPdf(array($creditmemo));
+                    $name = 'creditmemo' . Mage::getSingleton('core/date')->date('Y-m-d_H-i-s')
+                        . '_' . $creditmemo->getIncrementId() . '.pdf';
                     $connector = Mage::helper('scgooglecloudprint/connector');
                     $result = $connector->submit($pdf->render(), 'application/pdf', $name);
                     if ($result) {
                         Mage::getSingleton('adminhtml/session')->addSuccess(
-                            Mage::helper('scgooglecloudprint')->__('Invoice successfully sent to Google Cloud Print')
+                            Mage::helper('scgooglecloudprint')->__('Creditmemo successfully sent to Google Cloud Print')
                         );
-                        $this->_redirect('*/*/view', array('invoice_id' => $invoiceId));
+                        $this->_redirect('*/*/view', array('creditmemo_id' => $creditmemoId));
                         return;
                     }
                 }
-                $pdf = Mage::getModel('sales/order_pdf_invoice')->getPdf(array($invoice));
-                $this->_prepareDownloadResponse('invoice' . Mage::getSingleton('core/date')->date('Y-m-d_H-i-s') .
+                $pdf = Mage::getModel('sales/order_pdf_creditmemo')->getPdf(array($creditmemo));
+                $this->_prepareDownloadResponse('creditmemo' . Mage::getSingleton('core/date')->date('Y-m-d_H-i-s') .
                     '.pdf', $pdf->render(), 'application/pdf');
             }
         } else {

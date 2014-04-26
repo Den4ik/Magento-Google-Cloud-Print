@@ -84,6 +84,9 @@ class Snowcode_GoogleCloudPrint_Helper_Connector extends Mage_Core_Helper_Abstra
     {
         if (is_null($this->_gcpClient)) {
             $configHelper = Mage::helper('scgooglecloudprint/config');
+            $login = $configHelper->getAccountLogin();
+            $password = $configHelper->getAccountPassword();
+            if (empty($login) || empty($password)) return false;
             $client = Zend_Gdata_ClientLogin::getHttpClient($configHelper->getAccountLogin(),
                 $configHelper->getAccountPassword(),
                 'cloudprint');
@@ -103,13 +106,13 @@ class Snowcode_GoogleCloudPrint_Helper_Connector extends Mage_Core_Helper_Abstra
     public function submit($document, $type = 'application/pdf', $title = 'Print Job')
     {
         $configHelper = Mage::helper('scgooglecloudprint/config');
-        $store = Mage::app()->getRequest()->getParam('store') ?
-            Mage::app()->getRequest()->getParam('store') : Mage::app()->getStore();
+        $storeId = Mage::app()->getRequest()->getParam('store') ?
+            Mage::app()->getRequest()->getParam('store') : Mage::app()->getStore()->getId();
         $client = $this->getClient();
+        if (!$client) return false;
         $client->setHeaders('Authorization', 'GoogleLogin auth=' . $client->getClientLoginToken());
-        /*$client->setHeaders('X-CloudPrint-Proxy', 'Mimeo');*/
         $client->setUri($this->getGcpInterfaceUrl() . '/submit');
-        $client->setParameterPost('printerid', $configHelper->getPrinterId($store->getId()));
+        $client->setParameterPost('printerid', $configHelper->getPrinterId($storeId));
         $client->setParameterPost('title', $title);
         $client->setParameterPost('ticket', '{"version":"1.0","print":{"vendor_ticket_item": [],"color": {"type": "STANDARD_COLOR"},"copies": {"copies": 1}}}');
         $client->setParameterPost('content', $document);
@@ -118,6 +121,25 @@ class Snowcode_GoogleCloudPrint_Helper_Connector extends Mage_Core_Helper_Abstra
         $printerResponse = json_decode($response->getBody());
         if ($printerResponse->success) {
             return true;
+        }
+        return false;
+    }
+
+    /**
+     * Return Printers list
+     *
+     * @return array
+     */
+    public function search()
+    {
+        $client = $this->getClient();
+        if (!$client) return false;
+        $client->setHeaders('Authorization', 'GoogleLogin auth=' . $client->getClientLoginToken());
+        $client->setUri($this->getGcpInterfaceUrl() . '/search');
+        $response = $client->request(Zend_Http_Client::POST);
+        $printerResponse = json_decode($response->getBody());
+        if ($printerResponse->success) {
+            return $printerResponse->printers;
         }
         return false;
     }
