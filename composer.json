@@ -1,0 +1,20 @@
+{
+    "name": "profit-soft/google-cloud-print",
+    "type": "magento-module",
+    "description": "Magento Google Cloud Print extension",
+    "version": "0.1.0",
+    "keywords": ["magento", "mvc", "google cloud print"],
+    "homepage": "https://github.com/Den4ik/Magento-Google-Cloud-Print",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Denis Kopylov",
+            "email": "dv.kopylov@profit-soft.pro",
+            "homepage": "http://profit-soft.pro",
+            "role": "developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.0"
+    }
+}
