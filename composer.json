@@ -1,5 +1,5 @@
 {
-    "name": "profit-soft/google-cloud-print",
+    "name": "snowcode/google-cloud-print",
     "type": "magento-module",
     "description": "Magento Google Cloud Print extension",
     "version": "0.1.0",
